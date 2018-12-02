@@ -1,7 +1,7 @@
 module Main exposing (Model, init, main, update, view)
 
 import Browser
-import First.InputData
+import Dec1.InputData
 import Html exposing (Html, button, div, text)
 import Html.Attributes exposing (value)
 import Html.Events exposing (onInput)
@@ -21,7 +21,7 @@ type alias Model =
 
 init : Model
 init =
-    { input = First.InputData.data }
+    { input = Dec1.InputData.data }
 
 
 

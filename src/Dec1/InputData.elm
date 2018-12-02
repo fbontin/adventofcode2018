@@ -1,4 +1,4 @@
-module First.InputData exposing (data)
+module Dec1.InputData exposing (data)
 
 
 data =
