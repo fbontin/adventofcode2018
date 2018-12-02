@@ -24,40 +24,12 @@ init =
     { input = Dec2.InputData.data }
 
 
-
-{--input = """abcde
-fghij
-klmno
-pqrst
-fguij
-axcye
-wvxyz""" --}
-
-
 update msg model =
     model
 
 
 
 -- VIEW
-
-
-hasSame : Char -> Int -> String -> Bool
-hasSame char amount str =
-    str
-        |> String.filter (\c -> c == char)
-        |> String.length
-        |> (==) amount
-
-
-containsSame : Int -> String -> Bool
-containsSame amount str =
-    String.any (\char -> hasSame char amount str) str
-
-
-areNotSameChar : Char -> Char -> Bool
-areNotSameChar c1 c2 =
-    c1 /= c2
 
 
 areAlike : String -> String -> Bool
@@ -69,7 +41,7 @@ areAlike s1 s2 =
         l2 =
             String.toList s2
     in
-    List.map2 areNotSameChar l1 l2
+    List.map2 (\c1 c2 -> c1 /= c2) l1 l2
         |> List.filter (\b -> b)
         |> List.length
         |> (==) 1
@@ -82,18 +54,15 @@ calculateResult input =
             input
                 |> String.lines
                 |> List.map String.trim
-
-        result =
-            inputList
-                |> List.filter
-                    (\s1 ->
-                        inputList
-                            |> List.filter (\s2 -> areAlike s1 s2)
-                            |> List.length
-                            |> (==) 1
-                    )
     in
-    result
+    inputList
+        |> List.filter
+            (\s1 ->
+                inputList
+                    |> List.filter (\s2 -> areAlike s1 s2)
+                    |> List.length
+                    |> (==) 1
+            )
         |> List.intersperse " - "
         |> List.foldl (++) ""
 
