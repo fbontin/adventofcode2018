@@ -50,7 +50,7 @@ calculateResult input =
     let
         inputList =
             input
-                |> String.split "\n"
+                |> String.lines
                 |> List.map String.trim
 
         withTwo =
